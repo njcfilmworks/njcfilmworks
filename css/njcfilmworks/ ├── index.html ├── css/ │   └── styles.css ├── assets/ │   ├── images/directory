@@ -1,0 +1,9 @@
+njcfilmworks/
+├── index.html
+├── css/
+│   └── styles.css
+├── assets/
+│   ├── images/
+│   │   └── [your images]
+│   └── videos/
+│       └── [your videos]
