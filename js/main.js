@@ -1,66 +1,167 @@
-/* =====================================================
-   NJCFILMWORKS - MAIN JAVASCRIPT
-   Header, navigation, scroll animations
-   ===================================================== */
+/* ============================================================
+   NJC FILMWORKS — main.js
+   Header scroll, scroll animations, video cards, modal
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    initHeader();
-    initNavigation();
-    initScrollAnimations();
-    initScrollButtons();
-    initParallax();
-});
+(function () {
+  'use strict';
 
-/**
- * Initialize header scroll behavior
- */
-function initHeader() {
-    const header = document.getElementById('header');
-    const scrollThreshold = 50;
+  // ── Header: transparent → solid on scroll ──────────────────
+  const header = document.getElementById('header');
 
-    window.addEventListener('scroll', throttle(function() {
-        if (window.scrollY > scrollThreshold) {
-            addClass(header, 'scrolled');
-        } else {
-            removeClass(header, 'scrolled');
-        }
-    }, 10));
-}
+  function onScroll() {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  }
 
-/**
- * Initialize mobile navigation
- */
-function initNavigation() {
-    const navToggle = document.getElementById('navToggle');
-    const navList = document.querySelector('.nav__list');
-    const navLinks = document.querySelectorAll('.nav__link');
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // Run once on load
 
-    if (!navToggle) return;
+  // ── Mobile nav toggle ────────────────────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
 
-    // Toggle menu
-    navToggle.addEventListener('click', function() {
-        toggleClass(navToggle, 'active');
-        toggleClass(navList, 'active');
+  if (navToggle && navMobile) {
+    navToggle.addEventListener('click', function () {
+      const isOpen = navMobile.classList.contains('open');
+      navMobile.classList.toggle('open', !isOpen);
+      navToggle.classList.toggle('active', !isOpen);
+      // Show/hide via display
+      navMobile.style.display = isOpen ? 'none' : 'flex';
     });
 
-    // Close menu on link click
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            removeClass(navToggle, 'active');
-            removeClass(navList, 'active');
+    // Close mobile nav when a link is clicked
+    navMobile.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navMobile.classList.remove('open');
+        navToggle.classList.remove('active');
+        navMobile.style.display = 'none';
+      });
+    });
+  }
+
+  // ── Scroll-to anchor for hero CTA button ─────────────────────
+  document.querySelectorAll('[data-scroll-to]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const target = document.getElementById(btn.dataset.scrollTo);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── Intersection Observer: fade-in-up animations ─────────────
+  const fadeEls = document.querySelectorAll('.fade-in-up');
+
+  if (fadeEls.length > 0) {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const delay = parseInt(el.dataset.delay || '0', 10);
+            setTimeout(function () {
+              el.classList.add('visible');
+            }, delay);
+            observer.unobserve(el);
+          }
         });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    fadeEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
+  // ── Video Modal ──────────────────────────────────────────────
+  const modal = document.getElementById('videoModal');
+  const videoPlayer = document.getElementById('videoPlayer');
+  const modalClose = document.getElementById('modalClose');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+
+  function openModal(videoId, title) {
+    if (!modal || !videoPlayer) return;
+    const src =
+      'https://www.youtube.com/embed/' +
+      videoId +
+      '?autoplay=1&rel=0&modestbranding=1';
+    videoPlayer.src = src;
+    videoPlayer.title = title || 'Video';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal || !videoPlayer) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    // Slight delay so animation completes before iframe reset
+    setTimeout(function () {
+      videoPlayer.src = '';
+    }, 350);
+    document.body.style.overflow = '';
+  }
+
+  // Wire up all video cards
+  document.querySelectorAll('.featured__card[data-video-id]').forEach(function (card) {
+    card.addEventListener('click', function () {
+      openModal(card.dataset.videoId, card.dataset.title);
     });
 
-    // Close menu on outside click
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.header')) {
-            removeClass(navToggle, 'active');
-            removeClass(navList, 'active');
-        }
+    // Keyboard: Enter or Space triggers modal
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card.dataset.videoId, card.dataset.title);
+      }
     });
+  });
 
-    // Update active link based on current page
-    updateActiveNavLink();
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', closeModal);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+
+  // ── YouTube hero: try to reinforce autoplay after load ───────
+  // Some browsers block autoplay on iframes until interaction.
+  // We store user gesture to unlock if needed.
+  const heroIframe = document.querySelector('.hero__iframe');
+  if (heroIframe) {
+    // Nudge playback when user first interacts with the page
+    function unlockHeroVideo() {
+      try {
+        heroIframe.contentWindow.postMessage(
+          '{"event":"command","func":"playVideo","args":""}',
+          '*'
+        );
+      } catch (_) {}
+      document.removeEventListener('touchstart', unlockHeroVideo);
+      document.removeEventListener('click', unlockHeroVideo);
+    }
+    document.addEventListener('touchstart', unlockHeroVideo, { once: true });
+    document.addEventListener('click', unlockHeroVideo, { once: true });
+  }
+
+})();    updateActiveNavLink();
 }
 
 /**
