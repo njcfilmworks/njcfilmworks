@@ -1,1 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - NJCFilmworks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="logo">
+                <a href="index.html" class="logo__link">
+                    <span class="logo__text">NJCFilmworks</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="weddings.html" class="nav__link">Weddings</a></li>
+                    <li class="nav__item"><a href="brands.html" class="nav__link">Brands</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link active">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero__overlay"></div>
+        <div class="page-hero__content">
+            <h1 class="page-hero__title">Get In Touch</h1>
+            <p class="page-hero__subtitle">Let's discuss your cinematic vision</p>
+        </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form fade-in-up">
+                    <h2 class="contact-section__title">Send a Message</h2>
+                    <form class="form" id="contactForm">
+                        <div class="form__group">
+                            <label for="name" class="form__label">Name</label>
+                            <input type="text" id="name" name="name" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="email" class="form__label">Email</label>
+                            <input type="email" id="email" name="email" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="phone" class="form__label">Phone (optional)</label>
+                            <input type="tel" id="phone" name="phone" class="form__input">
+                        </div>
+                        <div class="form__group">
+                            <label for="service" class="form__label">Service Interest</label>
+                            <select id="service" name="service" class="form__input" required>
+                                <option value="">Select a service</option>
+                                <option value="wedding">Wedding Film</option>
+                                <option value="brand">Brand Film</option>
+                                <option value="both">Both</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form__group">
+                            <label for="message" class="form__label">Message</label>
+                            <textarea id="message" name="message" class="form__input form__textarea" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info fade-in-up">
+                    <h2 class="contact-section__title">Contact Info</h2>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Email</h3>
+                        <p><a href="mailto:hello@njcfilmworks.com" class="contact-link">hello@njcfilmworks.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Service Area</h3>
+                        <p>Available for Travel Worldwide</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item__title">Social</h3>
+                        <div class="contact-social">
+                            <a href="https://instagram.com" target="_blank" class="contact-link">Instagram</a>
+                            <a href="https://vimeo.com" target="_blank" class="contact-link">Vimeo</a>
+                            <a href="https://youtube.com" target="_blank" class="contact-link">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <span class="logo__text">NJCFilmworks</span>
+                </div>
+                <div class="footer__info">
+                    <p class="footer__availability">Available for Travel</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com" class="footer__link" target="_blank">Instagram</a>
+                        <a href="https://vimeo.com" class="footer__link" target="_blank">Vimeo</a>
+                        <a href="https://youtube.com" class="footer__link" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NJCFilmworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
