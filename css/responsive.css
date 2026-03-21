@@ -1,1 +1,388 @@
+/* =====================================================
+   NJCFILMWORKS - RESPONSIVE DESIGN
+   Mobile, tablet, and desktop breakpoints
+   ===================================================== */
 
+/* TABLET (768px and below) */
+@media (max-width: 768px) {
+    .header__container {
+        padding: 0 20px;
+    }
+
+    .nav__list {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(11, 11, 12, 0.98);
+        border-bottom: 1px solid rgba(201, 161, 74, 0.2);
+        z-index: 999;
+    }
+
+    .nav__list.active {
+        display: flex;
+    }
+
+    .nav__item {
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(201, 161, 74, 0.1);
+    }
+
+    .nav__link {
+        font-size: 0.9rem;
+    }
+
+    .nav__link::after {
+        display: none;
+    }
+
+    .nav__toggle {
+        display: flex;
+    }
+
+    .nav__toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .nav__toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav__toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* HERO */
+    .hero {
+        height: 80vh;
+    }
+
+    .hero__content {
+        padding: 20px;
+    }
+
+    .hero__buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    /* SECTIONS */
+    .featured,
+    .gallery,
+    .about-section,
+    .contact-section,
+    .testimonial,
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .featured__grid,
+    .gallery__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .footer__content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    .footer__info {
+        text-align: left;
+    }
+
+    .footer__social {
+        justify-content: flex-start;
+    }
+
+    /* MODALS */
+    .modal__content {
+        width: 95%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+
+    .modal__close {
+        top: -35px;
+        font-size: 1.5rem;
+    }
+
+    /* FORM */
+    .form {
+        gap: 15px;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+        height: 40vh;
+    }
+}
+
+/* MOBILE (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    p {
+        font-size: 0.95rem;
+    }
+
+    .header__container {
+        padding: 0 15px;
+        height: 70px;
+    }
+
+    .logo__text {
+        font-size: 1.2rem;
+    }
+
+    /* HERO */
+    .hero {
+        height: 100vh;
+        margin-top: 70px;
+    }
+
+    .hero__title {
+        margin-bottom: 15px;
+    }
+
+    .hero__subtitle {
+        font-size: 1.25rem;
+    }
+
+    .hero__meta {
+        font-size: 0.85rem;
+    }
+
+    .hero__buttons {
+        gap: 10px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.85rem;
+    }
+
+    .hero__scroll-indicator {
+        bottom: 20px;
+    }
+
+    /* SECTIONS */
+    .featured,
+    .gallery,
+    .about-section,
+    .contact-section,
+    .testimonial,
+    .cta-section {
+        padding: 40px 0;
+    }
+
+    .section__title {
+        margin-bottom: 40px;
+    }
+
+    .featured__grid,
+    .gallery__grid {
+        gap: 20px;
+    }
+
+    .about-section__paragraph {
+        font-size: 1rem;
+    }
+
+    .testimonial__quote {
+        font-size: 1.2rem;
+    }
+
+    .cta-section__title {
+        margin-bottom: 15px;
+    }
+
+    .cta-section__text {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer__content {
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer__info {
+        text-align: center;
+    }
+
+    .footer__social {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .footer__bottom {
+        font-size: 0.8rem;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+        height: 50vh;
+    }
+
+    .page-hero__title {
+        font-size: 1.5rem;
+    }
+
+    .page-hero__subtitle {
+        font-size: 1rem;
+    }
+
+    /* CONTACT FORM */
+    .form__label {
+        font-size: 0.85rem;
+    }
+
+    .form__input {
+        font-size: 1rem;
+        padding: 12px 12px;
+    }
+
+    /* MODAL */
+    .modal__content {
+        width: 98%;
+    }
+
+    .modal__close {
+        top: -30px;
+        font-size: 1.3rem;
+        right: -5px;
+    }
+}
+
+/* SMALL MOBILE (320px and below) */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    .hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+
+    .featured__grid,
+    .gallery__grid {
+        gap: 15px;
+    }
+}
+
+/* LARGE DESKTOP (1400px and above) */
+@media (min-width: 1400px) {
+    .container {
+        padding: 0 40px;
+    }
+
+    .featured__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gallery__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    h1 {
+        font-size: 5rem;
+    }
+}
+
+/* LANDSCAPE MOBILE */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+        min-height: auto;
+    }
+
+    .hero__content {
+        padding: 20px 40px;
+    }
+
+    .page-hero {
+        height: 30vh;
+    }
+}
+
+/* PRINT STYLES */
+@media print {
+    .header,
+    .nav__toggle,
+    .hero__scroll-indicator,
+    .footer,
+    .btn {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* PREFERS REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* DARK MODE SUPPORT */
+@media (prefers-color-scheme: dark) {
+    /* Already styled for dark mode */
+}
+
+/* HIGH CONTRAST */
+@media (prefers-contrast: more) {
+    .nav__link::after {
+        height: 3px;
+    }
+
+    .btn {
+        font-weight: 700;
+    }
+}
