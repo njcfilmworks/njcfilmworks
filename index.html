@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NJCFilmworks - Cinematic Storytelling</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="logo">
+                <a href="index.html" class="logo__link">
+                    <span class="logo__text">NJCFilmworks</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="weddings.html" class="nav__link">Weddings</a></li>
+                    <li class="nav__item"><a href="brands.html" class="nav__link">Brands</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero__background">
+            <img src="images/hero-bg.jpg" alt="Cinematic background" class="hero__image">
+            <div class="hero__overlay"></div>
+            <div class="hero__grain"></div>
+        </div>
+        <div class="hero__content">
+            <h1 class="hero__title">Cinematic Storytelling</h1>
+            <p class="hero__subtitle">For Weddings & Brands</p>
+            <p class="hero__meta">Available for Travel</p>
+            <div class="hero__buttons">
+                <button class="btn btn--primary" data-scroll-to="featured">Watch Films</button>
+                <a href="weddings.html" class="btn btn--secondary">View Weddings</a>
+            </div>
+        </div>
+        <div class="hero__scroll-indicator">
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- FEATURED WORK SECTION -->
+    <section class="featured" id="featured">
+        <div class="container">
+            <h2 class="section__title">Featured Work</h2>
+            <div class="featured__grid">
+                <!-- Wedding: Muriel -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/_e0r0c2VXec/maxresdefault.jpg" alt="Muriel Wedding" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">Muriel Wedding</h3>
+                            <p class="featured__type">Wedding Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="_e0r0c2VXec" data-title="Muriel Wedding"></button>
+                </div>
+
+                <!-- Wedding: Johnson -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/au507whmLm4/maxresdefault.jpg" alt="Johnson Wedding" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">Johnson Wedding</h3>
+                            <p class="featured__type">Wedding Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="au507whmLm4" data-title="Johnson Wedding"></button>
+                </div>
+
+                <!-- Wedding: McHough -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/6bjZyKQEyww/maxresdefault.jpg" alt="McHough Wedding" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">McHough Wedding</h3>
+                            <p class="featured__type">Wedding Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="6bjZyKQEyww" data-title="McHough Wedding"></button>
+                </div>
+
+                <!-- Brand: Mars 15 -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/TxWKm-Mqo6Q/maxresdefault.jpg" alt="Mars 15" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">Mars 15</h3>
+                            <p class="featured__type">Brand Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="TxWKm-Mqo6Q" data-title="Mars 15"></button>
+                </div>
+
+                <!-- Brand: Mars 30 -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/UXhcyz2EeL0/maxresdefault.jpg" alt="Mars 30" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">Mars 30</h3>
+                            <p class="featured__type">Brand Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="UXhcyz2EeL0" data-title="Mars 30"></button>
+                </div>
+
+                <!-- Brand: Beyond Fashion -->
+                <div class="featured__item fade-in-up">
+                    <div class="featured__card">
+                        <div class="featured__thumbnail">
+                            <img src="https://img.youtube.com/vi/EwN_8dzIYx8/maxresdefault.jpg" alt="Beyond Fashion" loading="lazy">
+                            <div class="featured__overlay">
+                                <div class="featured__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="featured__info">
+                            <h3 class="featured__name">Beyond Fashion</h3>
+                            <p class="featured__type">Brand Film</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="EwN_8dzIYx8" data-title="Beyond Fashion"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT I CREATE SECTION -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial__content fade-in-up">
+                <div class="testimonial__divider"></div>
+                <p class="testimonial__quote">
+                    "Every moment tells a story. I capture the beauty, emotion, and essence of your most important days and brands with cinematic precision and artistic vision."
+                </p>
+                <div class="testimonial__divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <span class="logo__text">NJCFilmworks</span>
+                </div>
+                <div class="footer__info">
+                    <p class="footer__availability">Available for Travel</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com" class="footer__link" target="_blank">Instagram</a>
+                        <a href="https://vimeo.com" class="footer__link" target="_blank">Vimeo</a>
+                        <a href="https://youtube.com" class="footer__link" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NJCFilmworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div class="modal" id="videoModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">✕</button>
+            <div class="modal__player">
+                <iframe 
+                    id="videoPlayer" 
+                    width="100%" 
+                    height="100%" 
+                    src="" 
+                    title="Video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/video-modal.js"></script>
+</body>
+</html>
