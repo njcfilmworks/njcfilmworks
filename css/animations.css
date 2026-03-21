@@ -1,1 +1,226 @@
+/* =====================================================
+   NJCFILMWORKS - ANIMATIONS
+   Scroll animations, transitions, and effects
+   ===================================================== */
 
+/* FADE IN UP ANIMATION */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FADE IN ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* SCALE UP ANIMATION */
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-up {
+    opacity: 0;
+    animation: scaleUp 0.6s ease forwards;
+}
+
+/* SLIDE IN LEFT */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-left {
+    opacity: 0;
+    animation: slideInLeft 0.7s ease forwards;
+}
+
+/* SLIDE IN RIGHT */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    opacity: 0;
+    animation: slideInRight 0.7s ease forwards;
+}
+
+/* GLOW ANIMATION */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(201, 161, 74, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(201, 161, 74, 0.6);
+    }
+}
+
+.glow {
+    animation: glow 3s ease infinite;
+}
+
+/* PULSE ANIMATION */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* SMOOTH SCROLL TO SECTION */
+html {
+    scroll-behavior: smooth;
+}
+
+/* HERO ANIMATIONS */
+.hero__title {
+    animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.hero__subtitle {
+    animation: fadeInUp 1s ease 0.4s backwards;
+}
+
+.hero__meta {
+    animation: fadeInUp 1s ease 0.5s backwards;
+}
+
+.hero__buttons {
+    animation: fadeInUp 1s ease 0.6s backwards;
+}
+
+/* PARALLAX EFFECT ON SCROLL */
+.parallax {
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-element {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.33, 0.66, 0.66, 1);
+}
+
+/* STAGGER ANIMATION FOR GRIDS */
+.featured__item:nth-child(1) { animation-delay: 0s; }
+.featured__item:nth-child(2) { animation-delay: 0.1s; }
+.featured__item:nth-child(3) { animation-delay: 0.2s; }
+.featured__item:nth-child(4) { animation-delay: 0.3s; }
+.featured__item:nth-child(5) { animation-delay: 0.4s; }
+.featured__item:nth-child(6) { animation-delay: 0.5s; }
+
+.gallery__item:nth-child(1) { animation-delay: 0s; }
+.gallery__item:nth-child(2) { animation-delay: 0.1s; }
+.gallery__item:nth-child(3) { animation-delay: 0.2s; }
+
+/* SMOOTH TRANSITIONS */
+* {
+    transition-property: background-color, color, border-color, box-shadow;
+    transition-timing-function: ease;
+    transition-duration: 0.3s;
+}
+
+button, a, input, textarea, select {
+    transition: all 0.3s ease;
+}
+
+/* HOVER SCALE */
+.featured__item:hover,
+.gallery__item:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* FOCUS STATES */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #C9A14A;
+    outline-offset: 2px;
+}
+
+/* DISABLED STATES */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* LOADING ANIMATION */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* SMOOTH HEADER ANIMATION */
+.header {
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
