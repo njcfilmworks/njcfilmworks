@@ -1,27 +1,76 @@
-// JavaScript code for Video Modal Lightbox Functionality
+/* =====================================================
+   NJCFILMWORKS - VIDEO MODAL
+   Video lightbox and YouTube integration
+   ===================================================== */
 
-// Function to open the modal
-function openModal(videoId) {
-    const modal = document.getElementById('videoModal');
-    const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    modal.querySelector('iframe').src = videoSrc;
-    modal.style.display = 'block';
-}
-
-// Function to close the modal
-function closeModal() {
-    const modal = document.getElementById('videoModal');
-    modal.querySelector('iframe').src = '';
-    modal.style.display = 'none';
-}
-
-// Event listeners for modal controls
-document.getElementById('closeModalBtn').addEventListener('click', closeModal);
-
-// Example: Open modal when a video thumbnail is clicked
-document.querySelectorAll('.videoThumbnail').forEach(item => {
-    item.addEventListener('click', event => {
-        const videoId = item.getAttribute('data-video-id');
-        openModal(videoId);
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    initVideoModal();
 });
+
+/**
+ * Initialize video modal
+ */
+function initVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalClose = document.getElementById('modalClose');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoTriggers = document.querySelectorAll('.video-trigger');
+
+    if (!modal) return;
+
+    // Open modal on video trigger
+    videoTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const videoId = this.getAttribute('data-video-id');
+            const title = this.getAttribute('data-title');
+            
+            if (videoId) {
+                openVideoModal(videoId, title);
+            }
+        });
+    });
+
+    // Close modal handlers
+    if (modalClose) {
+        modalClose.addEventListener('click', closeVideoModal);
+    }
+
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', closeVideoModal);
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && hasClass(modal, 'active')) {
+            closeVideoModal();
+        }
+    });
+
+    /**
+     * Open video modal with YouTube video
+     */
+    function openVideoModal(videoId, title = '') {
+        const youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1`;
+        
+        videoPlayer.setAttribute('src', youtubeEmbedUrl);
+        videoPlayer.setAttribute('title', title || 'Video Player');
+        
+        addClass(modal, 'active');
+        document.body.style.overflow = 'hidden';
+        
+        logStyled(`▶ Playing: ${title || videoId}`);
+    }
+
+    /**
+     * Close video modal
+     */
+    function closeVideoModal() {
+        removeClass(modal, 'active');
+        videoPlayer.setAttribute('src', '');
+        document.body.style.overflow = '';
+    }
+}
+
+logStyled('🎬 Video Modal System Loaded');
