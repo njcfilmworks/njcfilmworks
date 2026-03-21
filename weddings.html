@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Films - NJCFilmworks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="logo">
+                <a href="index.html" class="logo__link">
+                    <span class="logo__text">NJCFilmworks</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="weddings.html" class="nav__link active">Weddings</a></li>
+                    <li class="nav__item"><a href="brands.html" class="nav__link">Brands</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero__overlay"></div>
+        <div class="page-hero__content">
+            <h1 class="page-hero__title">Wedding Stories</h1>
+            <p class="page-hero__subtitle">Capturing your most beautiful moments</p>
+        </div>
+    </section>
+
+    <!-- WEDDINGS GALLERY -->
+    <section class="gallery">
+        <div class="container">
+            <div class="gallery__grid">
+                
+                <!-- Muriel Wedding -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/_e0r0c2VXec/maxresdefault.jpg" alt="Muriel Wedding" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">Muriel & Partner</h3>
+                            <p class="gallery__description">A celebration of love, laughter, and timeless moments</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="_e0r0c2VXec" data-title="Muriel Wedding"></button>
+                </div>
+
+                <!-- Johnson Wedding -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/au507whmLm4/maxresdefault.jpg" alt="Johnson Wedding" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">Johnson Wedding</h3>
+                            <p class="gallery__description">An elegant affair filled with heartfelt vows and joy</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="au507whmLm4" data-title="Johnson Wedding"></button>
+                </div>
+
+                <!-- McHough Wedding -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/6bjZyKQEyww/maxresdefault.jpg" alt="McHough Wedding" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">McHough Wedding</h3>
+                            <p class="gallery__description">A cinematic journey through two hearts becoming one</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="6bjZyKQEyww" data-title="McHough Wedding"></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in-up">
+                <h2 class="cta-section__title">Ready to Capture Your Story?</h2>
+                <p class="cta-section__text">Let's create something extraordinary together</p>
+                <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <span class="logo__text">NJCFilmworks</span>
+                </div>
+                <div class="footer__info">
+                    <p class="footer__availability">Available for Travel</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com" class="footer__link" target="_blank">Instagram</a>
+                        <a href="https://vimeo.com" class="footer__link" target="_blank">Vimeo</a>
+                        <a href="https://youtube.com" class="footer__link" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NJCFilmworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div class="modal" id="videoModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">✕</button>
+            <div class="modal__player">
+                <iframe 
+                    id="videoPlayer" 
+                    width="100%" 
+                    height="100%" 
+                    src="" 
+                    title="Video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/video-modal.js"></script>
+</body>
+</html>
