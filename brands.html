@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Films - NJCFilmworks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="logo">
+                <a href="index.html" class="logo__link">
+                    <span class="logo__text">NJCFilmworks</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="weddings.html" class="nav__link">Weddings</a></li>
+                    <li class="nav__item"><a href="brands.html" class="nav__link active">Brands</a></li>
+                    <li class="nav__item"><a href="about.html" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero__overlay"></div>
+        <div class="page-hero__content">
+            <h1 class="page-hero__title">Brand Films</h1>
+            <p class="page-hero__subtitle">Elevating brands through cinematic storytelling</p>
+        </div>
+    </section>
+
+    <!-- BRANDS GALLERY -->
+    <section class="gallery">
+        <div class="container">
+            <div class="gallery__grid">
+                
+                <!-- Mars 15 -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/TxWKm-Mqo6Q/maxresdefault.jpg" alt="Mars 15" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">Mars 15</h3>
+                            <p class="gallery__description">Bold storytelling for ambitious brands</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="TxWKm-Mqo6Q" data-title="Mars 15"></button>
+                </div>
+
+                <!-- Mars 30 -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/UXhcyz2EeL0/maxresdefault.jpg" alt="Mars 30" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">Mars 30</h3>
+                            <p class="gallery__description">Extended narrative for premium brands</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="UXhcyz2EeL0" data-title="Mars 30"></button>
+                </div>
+
+                <!-- Beyond Fashion -->
+                <div class="gallery__item fade-in-up">
+                    <div class="gallery__card">
+                        <div class="gallery__thumbnail">
+                            <img src="https://img.youtube.com/vi/EwN_8dzIYx8/maxresdefault.jpg" alt="Beyond Fashion" loading="lazy">
+                            <div class="gallery__overlay">
+                                <div class="gallery__play-icon">▶</div>
+                            </div>
+                        </div>
+                        <div class="gallery__info">
+                            <h3 class="gallery__title">Beyond Fashion</h3>
+                            <p class="gallery__description">Luxury brand storytelling at its finest</p>
+                        </div>
+                    </div>
+                    <button class="video-trigger" data-video-id="EwN_8dzIYx8" data-title="Beyond Fashion"></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in-up">
+                <h2 class="cta-section__title">Let's Elevate Your Brand</h2>
+                <p class="cta-section__text">Transform your message into a cinematic experience</p>
+                <a href="contact.html" class="btn btn--primary">Start a Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <span class="logo__text">NJCFilmworks</span>
+                </div>
+                <div class="footer__info">
+                    <p class="footer__availability">Available for Travel</p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com" class="footer__link" target="_blank">Instagram</a>
+                        <a href="https://vimeo.com" class="footer__link" target="_blank">Vimeo</a>
+                        <a href="https://youtube.com" class="footer__link" target="_blank">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 NJCFilmworks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div class="modal" id="videoModal">
+        <div class="modal__overlay" id="modalOverlay"></div>
+        <div class="modal__content">
+            <button class="modal__close" id="modalClose">✕</button>
+            <div class="modal__player">
+                <iframe 
+                    id="videoPlayer" 
+                    width="100%" 
+                    height="100%" 
+                    src="" 
+                    title="Video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/video-modal.js"></script>
+</body>
+</html>
