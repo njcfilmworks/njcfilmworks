@@ -1,387 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NJC Filmworks — Cinematic Storytelling</title>
-  <meta name="description" content="Cinematic wedding and brand films. Available for travel.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root{--black:#080808;--black-rich:#0d0d0d;--black-deep:#111111;--black-mid:#1a1a1a;--black-light:#222222;--gold:#C9A14A;--gold-light:#dbb96a;--gold-dim:#9a7a38;--gold-glow:rgba(201,161,74,0.18);--gold-glow-sm:rgba(201,161,74,0.10);--off-white:#f4f0e8;--text-muted:rgba(244,240,232,0.55);--text-dim:rgba(244,240,232,0.35);--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Georgia,serif;--font-ui:'Inter',-apple-system,sans-serif;--transition:0.4s cubic-bezier(0.25,0.46,0.45,0.94);--transition-fast:0.25s ease;--header-h:80px;--container-w:1200px;--radius:4px}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-    body{background:var(--black);color:var(--off-white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden}
-    img{display:block;max-width:100%;height:auto}
-    a{color:inherit;text-decoration:none}
-    button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
-    .container{max-width:var(--container-w);margin:0 auto;padding:0 40px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NJC Filmworks — Cinematic Storytelling</title>
+<meta name="description" content="Cinematic wedding and brand films.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--black-rich:#0d0d0d;--black-deep:#111111;--black-mid:#1a1a1a;--black-light:#222222;--gold:#C9A14A;--gold-light:#dbb96a;--gold-dim:#9a7a38;--gold-glow-sm:rgba(201,161,74,0.10);--off-white:#f4f0e8;--text-muted:rgba(244,240,232,0.55);--text-dim:rgba(244,240,232,0.35);--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Georgia,serif;--font-ui:'Inter',-apple-system,sans-serif;--ease:0.4s cubic-bezier(0.25,0.46,0.45,0.94);--fast:0.25s ease;--hh:80px;--cw:1200px;--r:4px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--black);color:var(--off-white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
+.container{max-width:var(--cw);margin:0 auto;padding:0 40px}
 
-    /* HEADER */
-    .header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);transition:background var(--transition),box-shadow var(--transition),border-color var(--transition);background:transparent;border-bottom:1px solid transparent}
-    .header.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom-color:rgba(201,161,74,0.15);box-shadow:0 2px 40px rgba(0,0,0,0.6)}
-    .header__inner{max-width:var(--container-w);margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
-    .logo-link{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
-    .logo-img{height:64px;width:auto;object-fit:contain;display:block;transition:opacity var(--transition-fast)}
-    .logo-link:hover .logo-img{opacity:0.8}
-    .logo-text-fallback{font-family:var(--font-ui);font-size:15px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--off-white);display:none}
-    .logo-accent{color:var(--gold)}
-    .nav{display:flex;align-items:center;gap:36px}
-    .nav__link{font-family:var(--font-ui);font-size:11px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast);position:relative}
-    .nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--transition-fast)}
-    .nav__link:hover{color:var(--off-white)}
-    .nav__link:hover::after{width:100%}
-    .nav__link--cta{color:var(--gold);border:1px solid rgba(201,161,74,0.4);padding:7px 20px;border-radius:var(--radius)}
-    .nav__link--cta::after{display:none}
-    .nav__link--cta:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
-    .nav__hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
-    .nav__hamburger span{display:block;width:24px;height:1.5px;background:var(--off-white);transition:var(--transition-fast)}
-    .nav__hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
-    .nav__hamburger.active span:nth-child(2){opacity:0}
-    .nav__hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
-    .nav--mobile{display:none;position:fixed;top:var(--header-h);left:0;right:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,161,74,0.15);padding:24px 0;z-index:99;flex-direction:column;align-items:center}
-    .nav--mobile.open{display:flex}
-    .nav--mobile .nav__link{padding:14px 0;font-size:12px;letter-spacing:0.25em;width:100%;text-align:center}
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--hh);transition:background var(--ease),border-color var(--ease),box-shadow var(--ease);background:transparent;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);border-bottom-color:rgba(201,161,74,0.15);box-shadow:0 2px 40px rgba(0,0,0,0.6)}
+.header__inner{max-width:var(--cw);margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo-link{display:flex;align-items:center;flex-shrink:0}
+.logo-img{height:64px;width:auto;object-fit:contain;transition:opacity var(--fast)}
+.logo-link:hover .logo-img{opacity:0.8}
+.logo-text-fallback{font-family:var(--font-ui);font-size:14px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--off-white);display:none}
+.logo-accent{color:var(--gold)}
+.nav{display:flex;align-items:center;gap:36px}
+.nav__link{font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);transition:color var(--fast);position:relative}
+.nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--fast)}
+.nav__link:hover{color:var(--off-white)}
+.nav__link:hover::after{width:100%}
+.nav__link--cta{color:var(--gold);border:1px solid rgba(201,161,74,0.4);padding:7px 20px;border-radius:var(--r)}
+.nav__link--cta::after{display:none}
+.nav__link--cta:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.nav__hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+.nav__hamburger span{display:block;width:24px;height:1.5px;background:var(--off-white);transition:var(--fast)}
+.nav__hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.nav__hamburger.active span:nth-child(2){opacity:0}
+.nav__hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+.nav--mobile{display:none;position:fixed;top:var(--hh);left:0;right:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,161,74,0.15);padding:24px 0;z-index:99;flex-direction:column;align-items:center}
+.nav--mobile.open{display:flex}
+.nav--mobile .nav__link{padding:14px 0;font-size:12px;letter-spacing:0.25em;width:100%;text-align:center}
 
-    /* HERO */
-    .hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .hero__video-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#000}
-    .hero__iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;border:none;pointer-events:none}
-    /* Invisible click-trap overlay — sits over iframe, captures first click to unlock autoplay, then removes itself */
-    .hero__click-trap{position:absolute;inset:0;z-index:10;cursor:default;background:transparent}
-    .hero__overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(8,8,8,0.4) 0%,rgba(8,8,8,0.15) 40%,rgba(8,8,8,0.6) 80%,rgba(8,8,8,0.92) 100%)}
-    .hero__vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at center,transparent 40%,rgba(8,8,8,0.7) 100%);pointer-events:none}
-    .hero__content{position:relative;z-index:3;text-align:center;padding:0 24px;max-width:820px}
-    .hero__eyebrow{font-family:var(--font-ui);font-size:11px;font-weight:400;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 1s 0.3s forwards}
-    .hero__title{font-family:var(--font-display);font-size:clamp(52px,8vw,100px);font-weight:500;line-height:1.0;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:20px;opacity:0;animation:fadeUp 1s 0.55s forwards}
-    .hero__title em{font-style:italic;font-weight:400;color:var(--gold-light)}
-    .hero__subtitle{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-weight:400;font-style:italic;color:var(--off-white);margin-bottom:14px;opacity:0;animation:fadeUp 1s 0.75s forwards}
-    .hero__meta{display:flex;align-items:center;justify-content:center;gap:14px;font-family:var(--font-ui);font-size:11px;font-weight:300;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:44px;opacity:0;animation:fadeUp 1s 0.9s forwards}
-    .hero__meta-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0.7}
-    .hero__buttons{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 1.05s forwards}
-    .hero__scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeIn 1s 1.5s forwards}
-    .hero__scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
-    .hero__scroll-text{font-family:var(--font-ui);font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);opacity:0.7}
+/* HERO */
+.hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero__video-wrap{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#000}
+.hero__iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;border:none;pointer-events:none}
+.hero__overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(8,8,8,0.4) 0%,rgba(8,8,8,0.15) 40%,rgba(8,8,8,0.6) 80%,rgba(8,8,8,0.92) 100%)}
+.hero__vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at center,transparent 40%,rgba(8,8,8,0.7) 100%);pointer-events:none}
+.hero__content{position:relative;z-index:3;text-align:center;padding:0 24px;max-width:820px}
+.hero__eyebrow{font-family:var(--font-ui);font-size:11px;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 1s 0.3s forwards}
+.hero__title{font-family:var(--font-display);font-size:clamp(52px,8vw,100px);font-weight:500;line-height:1;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:20px;opacity:0;animation:fadeUp 1s 0.55s forwards}
+.hero__title em{font-style:italic;font-weight:400;color:var(--gold-light)}
+.hero__subtitle{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-style:italic;color:var(--off-white);margin-bottom:44px;opacity:0;animation:fadeUp 1s 0.75s forwards}
+.hero__buttons{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 0.9s forwards}
+.hero__scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeIn 1s 1.4s forwards}
+.hero__scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease-in-out infinite}
+.hero__scroll-text{font-family:var(--font-ui);font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);opacity:0.7}
 
-    /* BUTTONS */
-    .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 32px;border-radius:var(--radius);transition:all var(--transition-fast);cursor:pointer;border:none;text-decoration:none}
-    .btn--gold{background:var(--gold);color:var(--black)}
-    .btn--gold:hover{background:var(--gold-light);box-shadow:0 0 30px rgba(201,161,74,0.35);transform:translateY(-1px)}
-    .btn--outline{background:transparent;color:var(--off-white);border:1px solid rgba(244,240,232,0.35)}
-    .btn--outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-glow-sm)}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r);transition:all var(--fast);cursor:pointer;border:none;text-decoration:none}
+.btn--gold{background:var(--gold);color:var(--black)}
+.btn--gold:hover{background:var(--gold-light);box-shadow:0 0 30px rgba(201,161,74,0.35);transform:translateY(-1px)}
+.btn--outline{background:transparent;color:var(--off-white);border:1px solid rgba(244,240,232,0.35)}
+.btn--outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-glow-sm)}
 
-    /* SECTION HEADER */
-    .section-header{text-align:center;margin-bottom:64px}
-    .section-header__eyebrow{display:block;font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-    .section-header__title{font-family:var(--font-display);font-size:clamp(32px,5vw,52px);font-weight:500;color:var(--off-white);letter-spacing:-0.01em;margin-bottom:24px}
-    .section-header__rule{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto}
+/* SECTION HEADER */
+.section-header{text-align:center;margin-bottom:64px}
+.section-header__eyebrow{display:block;font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section-header__title{font-family:var(--font-display);font-size:clamp(32px,5vw,52px);font-weight:500;color:var(--off-white);letter-spacing:-0.01em;margin-bottom:24px}
+.section-header__rule{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto}
 
-    /* FEATURED */
-    .featured{padding:120px 0;background:var(--black-rich);position:relative}
-    .featured::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.2),transparent)}
-    .featured__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-    .preview-card{position:relative;border-radius:var(--radius);overflow:hidden;background:var(--black-mid);cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);display:block;text-decoration:none;color:inherit}
-    .preview-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(201,161,74,0.2)}
-    .preview-card__thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--black-mid)}
-    .preview-card__img{width:100%;height:100%;object-fit:cover;transition:opacity 0.5s ease,transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);filter:brightness(0.85) saturate(0.9);position:relative;z-index:2}
-    .preview-card:hover .preview-card__img{opacity:0;transform:scale(1.04)}
-    .preview-card__preview{position:absolute;inset:0;z-index:1;overflow:hidden;background:var(--black)}
-    .preview-card__play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:3;transition:opacity 0.4s ease;pointer-events:none}
-    .preview-card__play svg{width:56px;height:56px;color:var(--off-white);filter:drop-shadow(0 2px 12px rgba(0,0,0,0.6))}
-    .preview-card:hover .preview-card__play{opacity:0}
-    .preview-card__cta{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.35s ease 0.15s;pointer-events:none}
-    .preview-card__cta-inner{background:rgba(8,8,8,0.8);border:1px solid rgba(201,161,74,0.5);color:var(--gold);font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;padding:10px 22px;border-radius:var(--radius);backdrop-filter:blur(4px)}
-    .preview-card:hover .preview-card__cta{opacity:1}
-    .preview-card__shine{position:absolute;inset:0;background:linear-gradient(135deg,transparent 0%,rgba(201,161,74,0.07) 50%,transparent 100%);transform:translateX(-100%);transition:transform 0.7s ease;z-index:5;pointer-events:none}
-    .preview-card:hover .preview-card__shine{transform:translateX(100%)}
-    .preview-card__meta{padding:16px 18px 18px;background:linear-gradient(to bottom,var(--black-mid),var(--black-light));border-top:1px solid rgba(201,161,74,0.12)}
-    .preview-card__category{font-family:var(--font-ui);font-size:9px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px}
-    .preview-card__title{font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--off-white)}
+/* FEATURED — preview cards */
+.featured{padding:120px 0;background:var(--black-rich);position:relative}
+.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.2),transparent)}
+.featured__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pcard{position:relative;border-radius:var(--r);overflow:hidden;background:var(--black-mid);display:block;text-decoration:none;color:inherit;transition:transform var(--ease),box-shadow var(--ease);cursor:pointer}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(201,161,74,0.2)}
+.pcard__thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--black-mid)}
+.pcard__img{width:100%;height:100%;object-fit:cover;position:relative;z-index:2;transition:opacity 0.5s ease,transform 0.6s ease;filter:brightness(0.85) saturate(0.9)}
+.pcard:hover .pcard__img{opacity:0;transform:scale(1.04)}
+.pcard__preview{position:absolute;inset:0;z-index:1;overflow:hidden;background:var(--black)}
+.pcard__play{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity 0.4s ease}
+.pcard__play svg{width:56px;height:56px;color:var(--off-white);filter:drop-shadow(0 2px 12px rgba(0,0,0,0.6))}
+.pcard:hover .pcard__play{opacity:0}
+.pcard__cta{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.35s ease 0.1s}
+.pcard__cta span{background:rgba(8,8,8,0.8);border:1px solid rgba(201,161,74,0.5);color:var(--gold);font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;padding:10px 22px;border-radius:var(--r);backdrop-filter:blur(4px)}
+.pcard:hover .pcard__cta{opacity:1}
+.pcard__shine{position:absolute;inset:0;z-index:5;pointer-events:none;background:linear-gradient(135deg,transparent 0%,rgba(201,161,74,0.07) 50%,transparent 100%);transform:translateX(-100%);transition:transform 0.7s ease}
+.pcard:hover .pcard__shine{transform:translateX(100%)}
+.pcard__meta{padding:16px 18px 18px;background:linear-gradient(to bottom,var(--black-mid),var(--black-light));border-top:1px solid rgba(201,161,74,0.12)}
+.pcard__cat{font-family:var(--font-ui);font-size:9px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:4px}
+.pcard__title{font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--off-white)}
 
-    /* QUOTE */
-    .quote-section{position:relative;padding:120px 0;text-align:center;overflow:hidden}
-    .quote-section__bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(201,161,74,0.06) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 80% 50%,rgba(201,161,74,0.04) 0%,transparent 70%),var(--black)}
-    .quote-block{position:relative;z-index:1;max-width:760px;margin:0 auto}
-    .quote-block__ornament{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px}
-    .quote-block__ornament+.quote-block__ornament{margin-top:40px;margin-bottom:0}
-    .quote-block__ornament span{display:block;width:80px;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.5))}
-    .quote-block__ornament span:last-child{background:linear-gradient(to left,transparent,rgba(201,161,74,0.5))}
-    .quote-block__text{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-weight:400;font-style:italic;line-height:1.6;color:var(--off-white)}
+/* QUOTE */
+.quote-section{position:relative;padding:120px 0;text-align:center;overflow:hidden}
+.quote-section__bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 100% at 20% 50%,rgba(201,161,74,0.06) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 80% 50%,rgba(201,161,74,0.04) 0%,transparent 70%),var(--black)}
+.quote-block{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.quote-block__orn{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px}
+.quote-block__orn+.quote-block__orn{margin-top:40px;margin-bottom:0}
+.quote-block__orn span{display:block;width:80px;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.5))}
+.quote-block__orn span:last-child{background:linear-gradient(to left,transparent,rgba(201,161,74,0.5))}
+.quote-block__text{font-family:var(--font-display);font-size:clamp(20px,3vw,28px);font-weight:400;font-style:italic;line-height:1.6;color:var(--off-white)}
 
-    /* FOOTER */
-    .footer{background:var(--black-deep);border-top:1px solid rgba(201,161,74,0.12);padding:64px 0 0}
-    .footer__inner{display:grid;grid-template-columns:1fr auto auto;align-items:start;gap:48px;margin-bottom:48px}
-    .footer__tagline{font-family:var(--font-ui);font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-top:10px}
-    .footer__nav{display:flex;flex-direction:column;gap:12px}
-    .footer__nav a{font-family:var(--font-ui);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast)}
-    .footer__nav a:hover{color:var(--gold)}
-    .footer__social{display:flex;flex-direction:column;gap:16px;align-items:flex-end}
-    .footer__social a{color:var(--text-dim);transition:color var(--transition-fast),transform var(--transition-fast)}
-    .footer__social a:hover{color:var(--gold);transform:scale(1.1)}
-    .footer__bottom{border-top:1px solid rgba(255,255,255,0.06);padding:24px 0;text-align:center}
-    .footer__bottom p{font-family:var(--font-ui);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim)}
+/* FOOTER */
+.footer{background:var(--black-deep);border-top:1px solid rgba(201,161,74,0.12);padding:64px 0 0}
+.footer__inner{display:grid;grid-template-columns:1fr auto auto;align-items:start;gap:48px;margin-bottom:48px}
+.footer__nav{display:flex;flex-direction:column;gap:12px}
+.footer__nav a{font-family:var(--font-ui);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);transition:color var(--fast)}
+.footer__nav a:hover{color:var(--gold)}
+.footer__social{display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+.footer__social a{color:var(--text-dim);transition:color var(--fast),transform var(--fast)}
+.footer__social a:hover{color:var(--gold);transform:scale(1.1)}
+.footer__bottom{border-top:1px solid rgba(255,255,255,0.06);padding:24px 0;text-align:center}
+.footer__bottom p{font-family:var(--font-ui);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim)}
 
-    /* SCROLL ANIM */
-    .fade-in-up{opacity:0;transform:translateY(32px);transition:opacity 0.75s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94)}
-    .fade-in-up.visible{opacity:1;transform:translateY(0)}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes scrollPulse{0%,100%{opacity:0.4}50%{opacity:0.9}}
+/* ANIM */
+.fade-in-up{opacity:0;transform:translateY(32px);transition:opacity 0.75s ease,transform 0.75s ease}
+.fade-in-up.visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scrollPulse{0%,100%{opacity:0.4}50%{opacity:0.9}}
 
-    @media(max-width:900px){.featured__grid{grid-template-columns:repeat(2,1fr);gap:20px}.footer__inner{grid-template-columns:1fr;gap:32px}.footer__social{flex-direction:row;align-items:center}}
-    @media(max-width:768px){:root{--header-h:68px}.container{padding:0 24px}.header__inner{padding:0 24px}.nav{display:none}.nav__hamburger{display:flex}.logo-img{height:50px}.featured{padding:80px 0}.featured__grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}.quote-section{padding:80px 0}}
-    @media(max-width:480px){.hero__buttons{flex-direction:column;align-items:stretch}.btn{text-align:center;justify-content:center}}
-  </style>
+@media(max-width:900px){.featured__grid{grid-template-columns:repeat(2,1fr);gap:20px}.footer__inner{grid-template-columns:1fr;gap:32px}.footer__social{flex-direction:row}}
+@media(max-width:768px){:root{--hh:68px}.container,.header__inner{padding:0 24px}.nav{display:none}.nav__hamburger{display:flex}.logo-img{height:50px}.featured{padding:80px 0}.featured__grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}.quote-section{padding:80px 0}}
+@media(max-width:480px){.hero__buttons{flex-direction:column;align-items:stretch}.btn{justify-content:center}}
+</style>
 </head>
 <body>
 
-  <header class="header" id="header">
-    <div class="header__inner">
-      <a href="index.html" class="logo-link">
-        <img src="images/logo.png" alt="NJC Filmworks" class="logo-img"
-          onerror="this.style.display='none';document.getElementById('logoFallback').style.display='inline'">
-        <span id="logoFallback" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
-      </a>
-      <nav class="nav">
-        <a href="weddings.html" class="nav__link">Weddings</a>
-        <a href="brands.html" class="nav__link">Brands</a>
-        <a href="about.html" class="nav__link">About</a>
-        <a href="contact.html" class="nav__link nav__link--cta">Contact</a>
-      </nav>
-      <button class="nav__hamburger" id="navToggle" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <nav class="nav--mobile" id="navMobile">
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo-link">
+      <img src="images/logo.png" alt="NJC Filmworks" class="logo-img" onerror="this.style.display='none';document.getElementById('hLF').style.display='inline'">
+      <span id="hLF" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
+    </a>
+    <nav class="nav">
       <a href="weddings.html" class="nav__link">Weddings</a>
       <a href="brands.html" class="nav__link">Brands</a>
       <a href="about.html" class="nav__link">About</a>
-      <a href="contact.html" class="nav__link">Contact</a>
+      <a href="contact.html" class="nav__link nav__link--cta">Contact</a>
     </nav>
-  </header>
+    <button class="nav__hamburger" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="nav--mobile" id="navMobile">
+    <a href="weddings.html" class="nav__link">Weddings</a>
+    <a href="brands.html" class="nav__link">Brands</a>
+    <a href="about.html" class="nav__link">About</a>
+    <a href="contact.html" class="nav__link">Contact</a>
+  </nav>
+</header>
 
-  <section class="hero" id="hero">
-    <div class="hero__video-wrap">
-      <iframe
-        id="heroVideo"
-        class="hero__iframe"
-        src="https://www.youtube.com/embed/_XqcdX2-e6U?autoplay=1&mute=1&loop=1&playlist=_XqcdX2-e6U&controls=0&showinfo=0&modestbranding=1&playsinline=1&iv_load_policy=3&rel=0&enablejsapi=1&origin=https://njcfilmworks.github.io"
-        title="Hero background"
-        frameborder="0"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+<section class="hero" id="hero">
+  <div class="hero__video-wrap">
+    <iframe id="heroVideo" class="hero__iframe"
+      src="https://www.youtube.com/embed/_XqcdX2-e6U?autoplay=1&mute=1&loop=1&playlist=_XqcdX2-e6U&controls=0&showinfo=0&modestbranding=1&playsinline=1&iv_load_policy=3&rel=0&enablejsapi=1"
+      title="Hero background" frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__vignette"></div>
+  <div class="hero__content">
+    <p class="hero__eyebrow">NJC Filmworks</p>
+    <h1 class="hero__title">Cinematic<br><em>Storytelling</em></h1>
+    <p class="hero__subtitle">For Weddings &amp; Brands</p>
+    <div class="hero__buttons">
+      <button class="btn btn--gold" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'})">Watch Films</button>
+      <a href="weddings.html" class="btn btn--outline">View Weddings</a>
     </div>
-    <!-- Invisible overlay — simulates a click on page load to satisfy browser autoplay policy -->
-    <div class="hero__click-trap" id="heroClickTrap"></div>
-    <div class="hero__overlay"></div>
-    <div class="hero__vignette"></div>
-    <div class="hero__content">
-      <p class="hero__eyebrow">NJC Filmworks</p>
-      <h1 class="hero__title">Cinematic<br><em>Storytelling</em></h1>
-      <p class="hero__subtitle">For Weddings &amp; Brands</p>
-      <div class="hero__buttons">
-        <button class="btn btn--gold" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'})">Watch Films</button>
-        <a href="weddings.html" class="btn btn--outline">View Weddings</a>
+  </div>
+  <div class="hero__scroll"><div class="hero__scroll-line"></div><span class="hero__scroll-text">Scroll</span></div>
+</section>
+
+<section class="featured" id="featured">
+  <div class="container">
+    <div class="section-header fade-in-up">
+      <span class="section-header__eyebrow">Portfolio</span>
+      <h2 class="section-header__title">Featured Work</h2>
+      <div class="section-header__rule"></div>
+    </div>
+    <div class="featured__grid">
+
+      <div class="fade-in-up" data-delay="0">
+        <a href="weddings.html" class="pcard" data-vid="_e0r0c2VXec">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/_e0r0c2VXec/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/_e0r0c2VXec/hqdefault.jpg'" alt="Muriel Wedding" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Wedding Film</p><h3 class="pcard__title">Muriel Wedding</h3></div>
+        </a>
+      </div>
+
+      <div class="fade-in-up" data-delay="100">
+        <a href="weddings.html" class="pcard" data-vid="au507whmLm4">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/au507whmLm4/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/au507whmLm4/hqdefault.jpg'" alt="Johnson Wedding" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Wedding Film</p><h3 class="pcard__title">Johnson Wedding</h3></div>
+        </a>
+      </div>
+
+      <div class="fade-in-up" data-delay="200">
+        <a href="weddings.html" class="pcard" data-vid="6bjZyKQEyww">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/6bjZyKQEyww/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/6bjZyKQEyww/hqdefault.jpg'" alt="McHough Wedding" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Wedding Film</p><h3 class="pcard__title">McHough Wedding</h3></div>
+        </a>
+      </div>
+
+      <div class="fade-in-up" data-delay="0">
+        <a href="brands.html" class="pcard" data-vid="TxWKm-Mqo6Q">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/TxWKm-Mqo6Q/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TxWKm-Mqo6Q/hqdefault.jpg'" alt="Mars 15" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Brand Film</p><h3 class="pcard__title">Mars 15</h3></div>
+        </a>
+      </div>
+
+      <div class="fade-in-up" data-delay="100">
+        <a href="brands.html" class="pcard" data-vid="UXhcyz2EeL0">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/UXhcyz2EeL0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/UXhcyz2EeL0/hqdefault.jpg'" alt="Mars 30" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Brand Film</p><h3 class="pcard__title">Mars 30</h3></div>
+        </a>
+      </div>
+
+      <div class="fade-in-up" data-delay="200">
+        <a href="brands.html" class="pcard" data-vid="EwN_8dzIYx8">
+          <div class="pcard__thumb">
+            <img class="pcard__img" src="https://img.youtube.com/vi/EwN_8dzIYx8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/EwN_8dzIYx8/hqdefault.jpg'" alt="Beyond Fashion" loading="lazy">
+            <div class="pcard__preview"></div>
+            <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
+            <div class="pcard__cta"><span>Watch Full Film →</span></div>
+            <div class="pcard__shine"></div>
+          </div>
+          <div class="pcard__meta"><p class="pcard__cat">Brand Film</p><h3 class="pcard__title">Beyond Fashion</h3></div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="quote-section">
+  <div class="quote-section__bg"></div>
+  <div class="container">
+    <div class="quote-block fade-in-up">
+      <div class="quote-block__orn"><span></span><svg viewBox="0 0 20 12" width="16"><path d="M10 0L20 12L0 12Z" fill="#C9A14A"/></svg><span></span></div>
+      <blockquote class="quote-block__text">"Every moment tells a story. I capture the beauty, emotion, and essence of your most important days and brands with cinematic precision and artistic vision."</blockquote>
+      <div class="quote-block__orn"><span></span><svg viewBox="0 0 20 12" width="16"><path d="M10 12L20 0L0 0Z" fill="#C9A14A"/></svg><span></span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div>
+        <a href="index.html" class="logo-link">
+          <img src="images/logo.png" alt="NJC Filmworks" class="logo-img" style="height:52px" onerror="this.style.display='none';document.getElementById('fLF').style.display='inline'">
+          <span id="fLF" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
+        </a>
+      </div>
+      <nav class="footer__nav">
+        <a href="weddings.html">Weddings</a><a href="brands.html">Brands</a>
+        <a href="about.html">About</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/njcfilmworks?igsh=YTdkeGJlczYwZTU4&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.tiktok.com/@njcfilmworks?_r=1&_t=ZP-94uA5Wrg2v8" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" width="22"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><path d="M22.5 6.5s-.2-1.8-1-2.6c-1-.9-2-.9-2.5-1C16.5 2.8 12 2.8 12 2.8s-4.5 0-7 .1c-.5.1-1.5.1-2.5 1-.8.8-1 2.6-1 2.6S1.2 8.6 1.2 10.7v2c0 2 .3 4.1.3 4.1s.2 1.8 1 2.6c1 .9 2.3.9 2.8 1C7.3 20.6 12 20.6 12 20.6s4.5 0 7-.1c.5-.1 1.5-.1 2.5-1 .8-.8 1-2.6 1-2.6s.3-2.1.3-4.1v-2c.2-2.1-.1-4.2-.1-4.2zM9.8 15.1V8.5l6.7 3.4-6.7 3.2z"/></svg></a>
       </div>
     </div>
-    <div class="hero__scroll"><div class="hero__scroll-line"></div><span class="hero__scroll-text">Scroll</span></div>
-  </section>
+    <div class="footer__bottom"><p>&copy; 2026 NJCFilmworks. All rights reserved.</p></div>
+  </div>
+</footer>
 
-  <section class="featured" id="featured">
-    <div class="container">
-      <div class="section-header fade-in-up">
-        <span class="section-header__eyebrow">Portfolio</span>
-        <h2 class="section-header__title">Featured Work</h2>
-        <div class="section-header__rule"></div>
-      </div>
-      <div class="featured__grid">
+<script>
+(function(){
+  // Header scroll
+  var h=document.getElementById('header');
+  window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
 
-        <div class="fade-in-up" data-delay="0">
-          <a href="weddings.html" class="preview-card" data-video-id="_e0r0c2VXec">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/_e0r0c2VXec/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/_e0r0c2VXec/hqdefault.jpg'" alt="Muriel Wedding" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Wedding Film</p><h3 class="preview-card__title">Muriel Wedding</h3></div>
-          </a>
-        </div>
+  // Mobile nav
+  var btn=document.getElementById('navToggle'),mob=document.getElementById('navMobile');
+  btn.addEventListener('click',function(){var o=mob.classList.toggle('open');btn.classList.toggle('active',o)});
+  mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');btn.classList.remove('active')})});
 
-        <div class="fade-in-up" data-delay="100">
-          <a href="weddings.html" class="preview-card" data-video-id="au507whmLm4">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/au507whmLm4/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/au507whmLm4/hqdefault.jpg'" alt="Johnson Wedding" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Wedding Film</p><h3 class="preview-card__title">Johnson Wedding</h3></div>
-          </a>
-        </div>
+  // Scroll fade
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,d=parseInt(el.dataset.delay||0);setTimeout(function(){el.classList.add('visible')},d);io.unobserve(el)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.fade-in-up').forEach(function(el){io.observe(el)});
 
-        <div class="fade-in-up" data-delay="200">
-          <a href="weddings.html" class="preview-card" data-video-id="6bjZyKQEyww">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/6bjZyKQEyww/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/6bjZyKQEyww/hqdefault.jpg'" alt="McHough Wedding" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Wedding Film</p><h3 class="preview-card__title">McHough Wedding</h3></div>
-          </a>
-        </div>
+  // Hero autoplay nudge
+  var hv=document.getElementById('heroVideo');
+  function nudge(){try{hv.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*')}catch(e){}}
+  setTimeout(nudge,800);
+  document.addEventListener('mousemove',nudge,{once:true,passive:true});
+  document.addEventListener('touchstart',nudge,{once:true,passive:true});
 
-        <div class="fade-in-up" data-delay="0">
-          <a href="brands.html" class="preview-card" data-video-id="TxWKm-Mqo6Q">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/TxWKm-Mqo6Q/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/TxWKm-Mqo6Q/hqdefault.jpg'" alt="Mars 15" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Brand Film</p><h3 class="preview-card__title">Mars 15</h3></div>
-          </a>
-        </div>
+  // Hover preview — uses data-vid attribute, class pcard
+  document.querySelectorAll('.pcard[data-vid]').forEach(function(card){
+    var vid=card.dataset.vid;
+    var wrap=card.querySelector('.pcard__preview');
+    var timer=null;
+    var live=false;
 
-        <div class="fade-in-up" data-delay="100">
-          <a href="brands.html" class="preview-card" data-video-id="UXhcyz2EeL0">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/UXhcyz2EeL0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/UXhcyz2EeL0/hqdefault.jpg'" alt="Mars 30" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Brand Film</p><h3 class="preview-card__title">Mars 30</h3></div>
-          </a>
-        </div>
-
-        <div class="fade-in-up" data-delay="200">
-          <a href="brands.html" class="preview-card" data-video-id="EwN_8dzIYx8">
-            <div class="preview-card__thumb">
-              <img class="preview-card__img" src="https://img.youtube.com/vi/EwN_8dzIYx8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/EwN_8dzIYx8/hqdefault.jpg'" alt="Beyond Fashion" loading="lazy">
-              <div class="preview-card__preview"></div>
-              <div class="preview-card__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
-              <div class="preview-card__cta"><span class="preview-card__cta-inner">Watch Full Film →</span></div>
-              <div class="preview-card__shine"></div>
-            </div>
-            <div class="preview-card__meta"><p class="preview-card__category">Brand Film</p><h3 class="preview-card__title">Beyond Fashion</h3></div>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="quote-section">
-    <div class="quote-section__bg"></div>
-    <div class="container">
-      <div class="quote-block fade-in-up">
-        <div class="quote-block__ornament"><span></span><svg viewBox="0 0 20 12" width="16"><path d="M10 0 L20 12 L0 12 Z" fill="#C9A14A"/></svg><span></span></div>
-        <blockquote class="quote-block__text">"Every moment tells a story. I capture the beauty, emotion, and essence of your most important days and brands with cinematic precision and artistic vision."</blockquote>
-        <div class="quote-block__ornament"><span></span><svg viewBox="0 0 20 12" width="16"><path d="M10 12 L20 0 L0 0 Z" fill="#C9A14A"/></svg><span></span></div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__inner">
-        <div>
-          <a href="index.html" class="logo-link">
-            <img src="images/logo.png" alt="NJC Filmworks" class="logo-img" style="height:52px"
-              onerror="this.style.display='none';document.getElementById('footerLogoFallback').style.display='inline'">
-            <span id="footerLogoFallback" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
-          </a>
-        </div>
-        <nav class="footer__nav">
-          <a href="weddings.html">Weddings</a><a href="brands.html">Brands</a>
-          <a href="about.html">About</a><a href="contact.html">Contact</a>
-        </nav>
-        <div class="footer__social">
-          <a href="https://www.instagram.com/njcfilmworks?igsh=YTdkeGJlczYwZTU4&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@njcfilmworks?_r=1&_t=ZP-94uA5Wrg2v8" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="22"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><path d="M22.5 6.5s-.2-1.8-1-2.6c-1-.9-2-.9-2.5-1C16.5 2.8 12 2.8 12 2.8s-4.5 0-7 .1c-.5.1-1.5.1-2.5 1-.8.8-1 2.6-1 2.6S1.2 8.6 1.2 10.7v2c0 2 .3 4.1.3 4.1s.2 1.8 1 2.6c1 .9 2.3.9 2.8 1C7.3 20.6 12 20.6 12 20.6s4.5 0 7-.1c.5-.1 1.5-.1 2.5-1 .8-.8 1-2.6 1-2.6s.3-2.1.3-4.1v-2c.2-2.1-.1-4.2-.1-4.2zM9.8 15.1V8.5l6.7 3.4-6.7 3.2z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer__bottom"><p>&copy; 2026 NJCFilmworks. All rights reserved.</p></div>
-    </div>
-  </footer>
-
-  <script>
-  (function(){
-    // Header scroll
-    var h=document.getElementById('header');
-    window.addEventListener('scroll',function(){h.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
-
-    // Mobile nav
-    var btn=document.getElementById('navToggle'),mob=document.getElementById('navMobile');
-    btn.addEventListener('click',function(){var o=mob.classList.toggle('open');btn.classList.toggle('active',o)});
-    mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');btn.classList.remove('active')})});
-
-    // Scroll fade
-    var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var el=x.target,d=parseInt(el.dataset.delay||0);setTimeout(function(){el.classList.add('visible')},d);io.unobserve(el)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-    document.querySelectorAll('.fade-in-up').forEach(function(el){io.observe(el)});
-
-    // ── Hero autoplay desktop fix ──────────────────────────────────────
-    // Chrome/Safari block autoplay on muted iframes until the page has
-    // received a user gesture. We use a hidden click-trap div that covers
-    // the hero on load. When the user's mouse first moves over the page
-    // (a passive interaction that counts as "engagement" in some browsers)
-    // OR after a short timeout we dispatch a synthetic click on the trap,
-    // which satisfies the gesture requirement and lets YouTube autoplay.
-    var trap=document.getElementById('heroClickTrap');
-    var iframe=document.getElementById('heroVideo');
-
-    function unlockVideo(){
-      if(!trap) return;
-      // Programmatically click the trap element — counts as user gesture in most browsers
-      trap.click();
-      // Also postMessage the YouTube player to play
-      try{iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*')}catch(e){}
-      // Remove trap so it doesn't block hero button clicks
-      trap.style.display='none';
-    }
-
-    // Try immediately after a tiny delay (works if page was already interacted with e.g. navigation)
-    setTimeout(unlockVideo, 500);
-
-    // Also fire on any first mouse move / touch (catches cold page loads)
-    document.addEventListener('mousemove', unlockVideo, {once:true, passive:true});
-    document.addEventListener('touchstart', unlockVideo, {once:true, passive:true});
-    document.addEventListener('keydown', unlockVideo, {once:true});
-
-    // Hover preview cards
-    document.querySelectorAll('.preview-card').forEach(function(card){
-      var vid=card.dataset.videoId,div=card.querySelector('.preview-card__preview'),t=null,loaded=false;
-      card.addEventListener('mouseenter',function(){
-        t=setTimeout(function(){
-          if(!loaded){
-            var f=document.createElement('iframe');
-            f.src='https://www.youtube.com/embed/'+vid+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+vid+'&modestbranding=1&showinfo=0&rel=0&playsinline=1&iv_load_policy=3';
-            f.setAttribute('frameborder','0');
-            f.setAttribute('allow','autoplay; encrypted-media');
-            f.style.cssText='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78%;height:177.78%;min-width:100%;min-height:100%;border:none;pointer-events:none;';
-            div.appendChild(f);loaded=true;
-          }
-        },700);
-      });
-      card.addEventListener('mouseleave',function(){clearTimeout(t);if(loaded){div.innerHTML='';loaded=false;}});
+    card.addEventListener('mouseenter',function(){
+      timer=setTimeout(function(){
+        if(!live && wrap){
+          var f=document.createElement('iframe');
+          f.src='https://www.youtube.com/embed/'+vid+'?autoplay=1&mute=1&controls=0&loop=1&playlist='+vid+'&modestbranding=1&rel=0&playsinline=1&showinfo=0&iv_load_policy=3';
+          f.setAttribute('frameborder','0');
+          f.setAttribute('allow','autoplay; encrypted-media');
+          f.style.cssText='position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78%;height:177.78%;min-width:100%;min-height:100%;border:none;pointer-events:none;';
+          wrap.appendChild(f);
+          live=true;
+        }
+      },600);
     });
-  })();
-  </script>
+
+    card.addEventListener('mouseleave',function(){
+      clearTimeout(timer);
+      if(live && wrap){wrap.innerHTML='';live=false;}
+    });
+  });
+})();
+</script>
 </body>
 </html>
