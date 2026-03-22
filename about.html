@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — NJC Filmworks
-(Nicholas Ceglia)</title>
+<title>About — NJC Filmworks</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -47,6 +46,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
 .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.2),transparent)}
 .page-hero__eyebrow{font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 0.8s 0.2s forwards}
 .page-hero__title{font-family:var(--font-display);font-size:clamp(40px,6vw,72px);font-weight:500;color:var(--off-white);letter-spacing:-0.02em;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.35s forwards}
+.page-hero__name{font-family:var(--font-display);font-size:clamp(18px,2.5vw,26px);font-weight:400;font-style:italic;color:var(--gold-light);margin-bottom:10px;opacity:0;animation:fadeUp 0.8s 0.45s forwards}
 .page-hero__subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,22px);font-style:italic;color:var(--text-muted);opacity:0;animation:fadeUp 0.8s 0.5s forwards}
 
 .about-section{padding:100px 0}
@@ -132,6 +132,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
 <section class="page-hero">
   <p class="page-hero__eyebrow">The Filmmaker</p>
   <h1 class="page-hero__title">About NJC Filmworks</h1>
+  <p class="page-hero__name">Nicholas J. Ceglia</p>
   <p class="page-hero__subtitle">Crafting cinematic stories since day one</p>
 </section>
 
@@ -144,7 +145,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
         <div class="about-intro__rule"></div>
         <p class="about-intro__text">NJC Filmworks was built on a single belief: that the most meaningful moments in life deserve to be preserved with the same care and artistry as a feature film.</p>
         <p class="about-intro__text">From intimate backyard weddings to large-scale brand campaigns, every project receives the same level of creative investment — meticulous lighting, intentional camera work, and an edit that makes you feel something.</p>
-        <p class="about-intro__text">Based in Florida,I bring a cinematic eye to wherever the story takes me.</p>
+        <p class="about-intro__text">Based in Florida, I bring a cinematic eye to wherever the story takes me.</p>
       </div>
       <div class="about-photo">
         <img src="images/headshot.jpg" alt="Nicholas — NJC Filmworks" class="about-photo__img"
@@ -183,7 +184,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
     <div class="about-cta fade-in-up">
       <h2 class="about-cta__title">Let's Create Something Cinematic</h2>
       <p class="about-cta__sub">Reach out to start the conversation</p>
-      <a href="contact.html" class="btn btn--gold">Get In Touch</a>
+      <a href="contact.html" class="btn btn--gold" onclick="window.location.href='contact.html';return false;" style="position:relative;z-index:9999;cursor:pointer;">Get In Touch</a>
     </div>
 
   </div>
@@ -219,6 +220,40 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
   mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');btn.classList.remove('active')})});
   var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.fade-in-up').forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<script>
+// Belt-and-suspenders: find ALL elements with "Get In Touch" text and wire them up
+(function(){
+  function wireBtn(){
+    // Find all elements containing the text
+    var all = document.querySelectorAll('a, button');
+    all.forEach(function(el){
+      if(el.textContent.trim().indexOf('Get In Touch') !== -1){
+        el.style.cssText += 'position:relative!important;z-index:99999!important;pointer-events:all!important;cursor:pointer!important;';
+        el.onclick = function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          window.location.href = 'contact.html';
+          return false;
+        };
+      }
+    });
+    // Also nuke any invisible overlays covering the CTA section
+    var cta = document.querySelector('.about-cta');
+    if(cta){
+      cta.style.cssText += 'position:relative!important;z-index:99999!important;';
+      // Remove any absolutely positioned siblings that might overlay it
+      var par = cta.parentNode;
+      if(par) par.style.cssText += 'position:relative!important;';
+    }
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', wireBtn);
+  } else {
+    wireBtn();
+  }
 })();
 </script>
 </body>
