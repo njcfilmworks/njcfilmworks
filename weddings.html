@@ -71,7 +71,16 @@
     .modal__close:hover{color:var(--gold);transform:rotate(90deg)}
     .modal__frame{position:relative;width:100%;padding-bottom:56.25%;border-radius:var(--radius);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.8),0 0 0 1px rgba(201,161,74,0.15)}
     .modal__frame iframe{position:absolute;inset:0;width:100%;height:100%}
-    .footer{background:var(--black-deep);border-top:1px solid rgba(201,161,74,0.12);padding:64px 0 0}
+    .pricing-bar{background:var(--black-rich);border-top:1px solid rgba(201,161,74,0.12);border-bottom:1px solid rgba(201,161,74,0.12);padding:32px 0;text-align:center}
+.pricing-bar__text{font-family:var(--font-display);font-size:clamp(18px,2.5vw,24px);font-style:italic;color:var(--off-white)}
+.pricing-bar__text span{color:var(--gold);font-style:normal;font-weight:500}
+.page-cta{padding:80px 0;text-align:center;background:var(--black)}
+.page-cta__title{font-family:var(--font-display);font-size:clamp(26px,4vw,44px);font-weight:500;color:var(--off-white);margin-bottom:12px}
+.page-cta__sub{font-family:var(--font-body);font-size:19px;font-style:italic;color:var(--text-muted);margin-bottom:36px}
+.btn{display:inline-flex;align-items:center;font-family:var(--font-ui);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r, 4px);transition:all 0.25s ease;cursor:pointer;border:none;text-decoration:none}
+.btn--gold{background:#C9A14A;color:#080808}
+.btn--gold:hover{background:#dbb96a;box-shadow:0 0 30px rgba(201,161,74,0.35);transform:translateY(-1px)}
+.footer{background:var(--black-deep);border-top:1px solid rgba(201,161,74,0.12);padding:64px 0 0}
     .footer__inner{display:grid;grid-template-columns:1fr auto auto;align-items:start;gap:48px;margin-bottom:48px}
     .footer__nav{display:flex;flex-direction:column;gap:12px}
     .footer__nav a{font-family:var(--font-ui);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast)}
@@ -138,6 +147,22 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- PRICING SIGNAL -->
+  <div class="pricing-bar">
+    <div class="container">
+      <p class="pricing-bar__text">Wedding films — <span>starting at $1,500</span></p>
+    </div>
+  </div>
+
+  <!-- PAGE CTA -->
+  <section class="page-cta">
+    <div class="container">
+      <h2 class="page-cta__title">Ready to book your film?</h2>
+      <p class="page-cta__sub">Based in Florida, filming weddings across the Southeast and beyond</p>
+      <a href="contact.html" class="btn btn--gold">Get In Touch</a>
     </div>
   </section>
 
