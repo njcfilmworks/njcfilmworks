@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root{--black:#080808;--black-rich:#0d0d0d;--black-deep:#111111;--black-mid:#1a1a1a;--black-light:#222222;--gold:#C9A14A;--gold-light:#dbb96a;--gold-dim:#9a7a38;--gold-glow:rgba(201,161,74,0.18);--gold-glow-sm:rgba(201,161,74,0.10);--off-white:#f4f0e8;--text-muted:rgba(244,240,232,0.55);--text-dim:rgba(244,240,232,0.35);--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Georgia,serif;--font-ui:'Inter',-apple-system,sans-serif;--transition:0.4s cubic-bezier(0.25,0.46,0.45,0.94);--transition-fast:0.25s ease;--header-h:80px;--container-w:1200px;--radius:4px}
+    :root{--black:#080808;--black-rich:#0d0d0d;--black-deep:#111111;--black-mid:#1a1a1a;--black-light:#222222;--gold:#C9A14A;--gold-light:#dbb96a;--off-white:#f4f0e8;--text-muted:rgba(244,240,232,0.55);--text-dim:rgba(244,240,232,0.35);--font-display:'Playfair Display',Georgia,serif;--font-body:'Cormorant Garamond',Georgia,serif;--font-ui:'Inter',-apple-system,sans-serif;--transition:0.4s cubic-bezier(0.25,0.46,0.45,0.94);--transition-fast:0.25s ease;--header-h:80px;--container-w:1200px;--radius:4px}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
     body{background:var(--black);color:var(--off-white);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden}
@@ -17,24 +17,222 @@
     button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
     .container{max-width:var(--container-w);margin:0 auto;padding:0 40px}
 
-    /* HEADER */
     .header{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);background:rgba(8,8,8,0.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,161,74,0.15);box-shadow:0 2px 40px rgba(0,0,0,0.6)}
     .header__inner{max-width:var(--container-w);margin:0 auto;padding:0 40px;height:100%;display:flex;align-items:center;justify-content:space-between}
-    .logo-link{display:flex;align-items:center;gap:10px}
-    .logo-img{height:64px;width:auto;object-fit:contain}
-    .logo-text-fallback{font-family:var(--font-ui);font-size:13px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--off-white)}
-    .logo-link:hover .logo-text-fallback{color:var(--gold)}
+    .logo-link{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+    .logo-img{height:64px;width:auto;object-fit:contain;display:block;transition:opacity var(--transition-fast)}
+    .logo-link:hover .logo-img{opacity:0.8}
+    .logo-text-fallback{font-family:var(--font-ui);font-size:14px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--off-white);display:none}
     .logo-accent{color:var(--gold)}
     .nav{display:flex;align-items:center;gap:36px}
     .nav__link{font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast);position:relative}
     .nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width var(--transition-fast)}
     .nav__link:hover{color:var(--off-white)}
     .nav__link:hover::after{width:100%}
-    .nav__link--cta,.nav__link.active{color:var(--gold)}
-    .nav__link--cta{border:1px solid rgba(201,161,74,0.4);padding:7px 20px;border-radius:var(--radius)}
+    .nav__link--cta{color:var(--gold);border:1px solid rgba(201,161,74,0.4);padding:7px 20px;border-radius:var(--radius)}
     .nav__link--cta::after{display:none}
     .nav__link--cta:hover{background:var(--gold);border-color:var(--gold);color:var(--black)}
     .nav__hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+    .nav__hamburger span{display:block;width:24px;height:1.5px;background:var(--off-white);transition:var(--transition-fast)}
+    .nav__hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+    .nav__hamburger.active span:nth-child(2){opacity:0}
+    .nav__hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+    .nav--mobile{display:none;position:fixed;top:var(--header-h);left:0;right:0;background:rgba(8,8,8,0.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,161,74,0.15);padding:24px 0;z-index:99;flex-direction:column;align-items:center}
+    .nav--mobile.open{display:flex}
+    .nav--mobile .nav__link{padding:14px 0;font-size:12px;letter-spacing:0.25em;width:100%;text-align:center}
+
+    .page-hero{padding:160px 0 80px;text-align:center;position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 50% 0%,rgba(201,161,74,0.08) 0%,transparent 70%)}
+    .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(201,161,74,0.2),transparent)}
+    .page-hero__eyebrow{font-family:var(--font-ui);font-size:10px;font-weight:500;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:fadeUp 0.8s 0.2s forwards}
+    .page-hero__title{font-family:var(--font-display);font-size:clamp(40px,6vw,72px);font-weight:500;color:var(--off-white);letter-spacing:-0.02em;margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.35s forwards}
+    .page-hero__subtitle{font-family:var(--font-display);font-size:clamp(16px,2vw,22px);font-style:italic;color:var(--text-muted);opacity:0;animation:fadeUp 0.8s 0.5s forwards}
+
+    .contact-section{padding:80px 0 120px}
+    .contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:start}
+
+    .form-wrap{background:var(--black-rich);border:1px solid rgba(201,161,74,0.1);border-radius:var(--radius);padding:48px}
+    .form-wrap__title{font-family:var(--font-display);font-size:28px;font-weight:500;color:var(--off-white);margin-bottom:8px}
+    .form-wrap__sub{font-family:var(--font-body);font-size:17px;font-style:italic;color:var(--text-muted);margin-bottom:32px}
+    .form-rule{width:48px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:36px}
+    .form__group{margin-bottom:24px}
+    .form__label{display:block;font-family:var(--font-ui);font-size:9px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);opacity:0.8;margin-bottom:10px}
+    .form__input{width:100%;background:var(--black-mid);border:1px solid rgba(201,161,74,0.12);border-radius:var(--radius);padding:14px 16px;font-family:var(--font-body);font-size:17px;color:var(--off-white);transition:border-color var(--transition-fast),background var(--transition-fast);outline:none;-webkit-appearance:none;appearance:none}
+    .form__input::placeholder{color:var(--text-dim)}
+    .form__input:focus{border-color:rgba(201,161,74,0.5);background:var(--black-light)}
+    select.form__input{cursor:pointer}
+    select.form__input option{background:var(--black-mid)}
+    textarea.form__input{resize:vertical;min-height:140px}
+    .form__submit{width:100%;background:var(--gold);color:var(--black);font-family:var(--font-ui);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:16px 40px;border-radius:var(--radius);border:none;cursor:pointer;margin-top:8px;transition:background var(--transition-fast),box-shadow var(--transition-fast),transform var(--transition-fast)}
+    .form__submit:hover{background:var(--gold-light);box-shadow:0 0 30px rgba(201,161,74,0.35);transform:translateY(-1px)}
+
+    .contact-info{position:sticky;top:calc(var(--header-h) + 40px)}
+    .info-block{margin-bottom:40px}
+    .info-block__label{font-family:var(--font-ui);font-size:9px;font-weight:500;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+    .info-block__value{font-family:var(--font-display);font-size:20px;color:var(--off-white)}
+    .info-block__value a:hover{color:var(--gold)}
+    .info-rule{width:48px;height:1px;background:linear-gradient(to right,rgba(201,161,74,0.4),transparent);margin:36px 0}
+    .social-links{display:flex;flex-direction:column;gap:16px}
+    .social-link{display:flex;align-items:center;gap:14px;font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast)}
+    .social-link:hover{color:var(--gold)}
+
+    .footer{background:var(--black-deep);border-top:1px solid rgba(201,161,74,0.12);padding:64px 0 0}
+    .footer__inner{display:grid;grid-template-columns:1fr auto auto;align-items:start;gap:48px;margin-bottom:48px}
+    .footer__nav{display:flex;flex-direction:column;gap:12px}
+    .footer__nav a{font-family:var(--font-ui);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);transition:color var(--transition-fast)}
+    .footer__nav a:hover{color:var(--gold)}
+    .footer__social{display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+    .footer__social a{color:var(--text-dim);transition:color var(--transition-fast),transform var(--transition-fast)}
+    .footer__social a:hover{color:var(--gold);transform:scale(1.1)}
+    .footer__bottom{border-top:1px solid rgba(255,255,255,0.06);padding:24px 0;text-align:center}
+    .footer__bottom p{font-family:var(--font-ui);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-dim)}
+
+    .fade-in-up{opacity:0;transform:translateY(32px);transition:opacity 0.75s cubic-bezier(0.25,0.46,0.45,0.94),transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94)}
+    .fade-in-up.visible{opacity:1;transform:translateY(0)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px}.contact-info{position:static}.footer__inner{grid-template-columns:1fr;gap:32px}.footer__social{flex-direction:row}}
+    @media(max-width:768px){:root{--header-h:68px}.container{padding:0 24px}.header__inner{padding:0 24px}.nav{display:none}.nav__hamburger{display:flex}.logo-img{height:50px}.form-wrap{padding:32px 24px}}
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="NJC Filmworks" class="logo-img" onerror="this.style.display='none';document.getElementById('ctLogoFb').style.display='inline'">
+        <span id="ctLogoFb" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
+      </a>
+      <nav class="nav">
+        <a href="weddings.html" class="nav__link">Weddings</a>
+        <a href="brands.html" class="nav__link">Brands</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="contact.html" class="nav__link nav__link--cta">Contact</a>
+      </nav>
+      <button class="nav__hamburger" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav--mobile" id="navMobile">
+      <a href="weddings.html" class="nav__link">Weddings</a>
+      <a href="brands.html" class="nav__link">Brands</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="contact.html" class="nav__link">Contact</a>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <p class="page-hero__eyebrow">Let's Connect</p>
+    <h1 class="page-hero__title">Get In Touch</h1>
+    <p class="page-hero__subtitle">Tell me about your vision</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="form-wrap fade-in-up">
+          <h2 class="form-wrap__title">Send a Message</h2>
+          <p class="form-wrap__sub">I'll get back to you within 24 hours</p>
+          <div class="form-rule"></div>
+          <!-- Replace YOUR_FORM_ID with your Formspree ID from formspree.io -->
+          <form action="https://formspree.io/f/xyknarod" method="POST">
+            <div class="form__group">
+              <label for="name" class="form__label">Your Name</label>
+              <input type="text" id="name" name="name" class="form__input" placeholder="First & Last Name" required>
+            </div>
+            <div class="form__group">
+              <label for="email" class="form__label">Email Address</label>
+              <input type="email" id="email" name="email" class="form__input" placeholder="your@email.com" required>
+            </div>
+            <div class="form__group">
+              <label for="phone" class="form__label">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" class="form__input" placeholder="+1 (000) 000-0000">
+            </div>
+            <div class="form__group">
+              <label for="service" class="form__label">I'm interested in</label>
+              <select id="service" name="service" class="form__input" required>
+                <option value="">Select a service</option>
+                <option value="wedding">Wedding Film</option>
+                <option value="brand">Brand Film</option>
+                <option value="both">Both</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label for="message" class="form__label">Tell me about your project</label>
+              <textarea id="message" name="message" class="form__input" rows="5" placeholder="Date, location, vision..."></textarea>
+            </div>
+            <button type="submit" class="form__submit">Send Message</button>
+          </form>
+        </div>
+
+        <div class="contact-info fade-in-up" style="transition-delay:0.15s">
+          <div class="info-block">
+            <p class="info-block__label">Email</p>
+            <p class="info-block__value"><a href="mailto:njcfilmworks@gmail.com">njcfilmworks@gmail.com</a></p>
+          </div>
+          <div class="info-rule"></div>
+          <div class="info-block">
+            <p class="info-block__label">Service Area</p>
+            <p class="info-block__value">East Coast &amp; Beyond</p>
+          </div>
+          <div class="info-rule"></div>
+          <div class="info-block">
+            <p class="info-block__label">Follow Along</p>
+            <div class="social-links">
+              <a href="https://www.instagram.com/njcfilmworks?igsh=YTdkeGJlczYwZTU4&utm_source=qr" target="_blank" rel="noopener" class="social-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Instagram
+              </a>
+              <a href="https://www.tiktok.com/@njcfilmworks?_r=1&_t=ZP-94uA5Wrg2v8" target="_blank" rel="noopener" class="social-link">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="18"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+                TikTok
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18"><path d="M22.5 6.5s-.2-1.8-1-2.6c-1-.9-2-.9-2.5-1C16.5 2.8 12 2.8 12 2.8s-4.5 0-7 .1c-.5.1-1.5.1-2.5 1-.8.8-1 2.6-1 2.6S1.2 8.6 1.2 10.7v2c0 2 .3 4.1.3 4.1s.2 1.8 1 2.6c1 .9 2.3.9 2.8 1C7.3 20.6 12 20.6 12 20.6s4.5 0 7-.1c.5-.1 1.5-.1 2.5-1 .8-.8 1-2.6 1-2.6s.3-2.1.3-4.1v-2c.2-2.1-.1-4.2-.1-4.2zM9.8 15.1V8.5l6.7 3.4-6.7 3.2z"/></svg>
+                YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <a href="index.html" class="logo-link">
+            <img src="images/logo.png" alt="NJC Filmworks" class="logo-img" style="height:52px" onerror="this.style.display='none';document.getElementById('ctFtrFb').style.display='inline'">
+            <span id="ctFtrFb" class="logo-text-fallback">NJC <span class="logo-accent">FILMWORKS</span></span>
+          </a>
+        </div>
+        <nav class="footer__nav">
+          <a href="weddings.html">Weddings</a><a href="brands.html">Brands</a>
+          <a href="about.html">About</a><a href="contact.html">Contact</a>
+        </nav>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/njcfilmworks?igsh=YTdkeGJlczYwZTU4&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.tiktok.com/@njcfilmworks?_r=1&_t=ZP-94uA5Wrg2v8" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" width="22"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22"><path d="M22.5 6.5s-.2-1.8-1-2.6c-1-.9-2-.9-2.5-1C16.5 2.8 12 2.8 12 2.8s-4.5 0-7 .1c-.5.1-1.5.1-2.5 1-.8.8-1 2.6-1 2.6S1.2 8.6 1.2 10.7v2c0 2 .3 4.1.3 4.1s.2 1.8 1 2.6c1 .9 2.3.9 2.8 1C7.3 20.6 12 20.6 12 20.6s4.5 0 7-.1c.5-.1 1.5-.1 2.5-1 .8-.8 1-2.6 1-2.6s.3-2.1.3-4.1v-2c.2-2.1-.1-4.2-.1-4.2zM9.8 15.1V8.5l6.7 3.4-6.7 3.2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__bottom"><p>&copy; 2026 NJCFilmworks. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var btn=document.getElementById('navToggle'),mob=document.getElementById('navMobile');
+    btn.addEventListener('click',function(){var o=mob.classList.toggle('open');btn.classList.toggle('active',o)});
+    mob.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mob.classList.remove('open');btn.classList.remove('active')})});
+    var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.fade-in-up').forEach(function(el){io.observe(el)});
+  })();
+  </script>
+</body>
+</html>    .nav__hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
     .nav__hamburger span{display:block;width:24px;height:1.5px;background:var(--off-white);transition:var(--transition-fast)}
     .nav__hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
     .nav__hamburger.active span:nth-child(2){opacity:0}
