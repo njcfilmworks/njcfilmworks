@@ -191,5 +191,58 @@
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
   })();
   </script>
+  <!-- GOLD FLAKES — paste just before </body> -->
+<canvas id="goldCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.75" aria-hidden="true"></canvas>
+<script>
+(function(){
+  var N=80,c=document.getElementById('goldCanvas'),ctx=c.getContext('2d'),W,H,fl=[];
+  var G=['rgba(201,161,74,','rgba(219,185,106,','rgba(180,140,55,','rgba(240,210,130,','rgba(155,115,38,'];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function Flake(born){
+    this.x=Math.random()*window.innerWidth;
+    this.y=born?Math.random()*window.innerHeight:-10;
+    this.size=0.9+Math.random()*2.1;
+    this.vy=0.25+Math.random()*0.6;
+    this.vx=(Math.random()-0.5)*0.35;
+    this.rot=Math.random()*Math.PI*2;
+    this.rs=(Math.random()-0.5)*0.035;
+    this.alpha=0.1+Math.random()*0.55;
+    this.sh=Math.random()*Math.PI*2;
+    this.ss=0.018+Math.random()*0.025;
+    this.col=G[Math.floor(Math.random()*G.length)];
+    this.shape=Math.floor(Math.random()*3);
+    this.asp=0.35+Math.random()*0.65;
+  }
+  function draw(f){
+    var a=Math.max(0,Math.min(1,f.alpha+Math.sin(f.sh)*0.12));
+    ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rot);
+    ctx.fillStyle=f.col+a+')';
+    if(f.shape===0){
+      ctx.beginPath();
+      for(var i=0;i<6;i++){var ag=(Math.PI/3)*i-Math.PI/6;i===0?ctx.moveTo(f.size*Math.cos(ag),f.size*Math.sin(ag)):ctx.lineTo(f.size*Math.cos(ag),f.size*Math.sin(ag));}
+      ctx.closePath();ctx.fill();
+    }else if(f.shape===1){
+      ctx.beginPath();ctx.moveTo(0,-f.size*1.4);ctx.lineTo(f.size*f.asp,0);ctx.lineTo(0,f.size*1.4);ctx.lineTo(-f.size*f.asp,0);ctx.closePath();ctx.fill();
+    }else{
+      ctx.fillRect(-f.size*(0.4+f.asp*0.7)/2,-f.size*1.2,f.size*(0.4+f.asp*0.7),f.size*2.4);
+    }
+    ctx.restore();
+  }
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<fl.length;i++){
+      var f=fl[i];
+      f.y+=f.vy;f.x+=f.vx+Math.sin(f.y*0.011)*0.12;f.rot+=f.rs;f.sh+=f.ss;
+      if(f.y>H+12||f.x<-12||f.x>W+12)fl[i]=new Flake(false);
+      draw(f);
+    }
+    requestAnimationFrame(tick);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  for(var i=0;i<N;i++)fl.push(new Flake(true));
+  tick();
+})();
+</script>
 </body>
 </html>
