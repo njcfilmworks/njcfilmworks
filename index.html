@@ -251,7 +251,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
       <div class="fade-in-up" data-delay="200">
         <a href="brands.html" class="pcard" data-vid="EwN_8dzIYx8">
           <div class="pcard__thumb">
-            <img class="pcard__img" src="https://img.youtube.com/vi/EwN_8dzIYx8/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/EwN_8dzIYx8/hqdefault.jpg'" alt="Beyond Fashion" loading="lazy">
+            <img class="pcard__img" src="https://img.youtube.com/vi/EwN_8dzIYx8/hqdefault.jpg" onerror="this.onerror=null;this.style.display='none';this.parentNode.style.background='#1a1a1a'" alt="Beyond Fashion" loading="lazy">
             <div class="pcard__preview"></div>
             <div class="pcard__play"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.2"/><path d="M10 8.5L16 12L10 15.5V8.5Z" fill="currentColor"/></svg></div>
             <div class="pcard__cta"><span>Watch Full Film →</span></div>
@@ -314,12 +314,32 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
   var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var el=e.target,d=parseInt(el.dataset.delay||0);setTimeout(function(){el.classList.add('visible')},d);io.unobserve(el)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.fade-in-up').forEach(function(el){io.observe(el)});
 
-  // Hero autoplay nudge
-  var hv=document.getElementById('heroVideo');
-  function nudge(){try{hv.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*')}catch(e){}}
-  setTimeout(nudge,800);
-  document.addEventListener('mousemove',nudge,{once:true,passive:true});
-  document.addEventListener('touchstart',nudge,{once:true,passive:true});
+  // Hero autoplay — load YT IFrame API and call playVideo() directly
+  // This bypasses browser autoplay policies by using the official API
+  var _ytReady=false;
+  function _startHero(){
+    if(_ytReady)return; _ytReady=true;
+    try{
+      new window.YT.Player('heroVideo',{
+        events:{onReady:function(e){try{e.target.mute();e.target.playVideo();}catch(x){}}}
+      });
+    }catch(x){}
+  }
+  window.onYouTubeIframeAPIReady=function(){_startHero()};
+  // Load the API
+  var _yta=document.createElement('script');
+  _yta.src='https://www.youtube.com/iframe_api';
+  document.head.appendChild(_yta);
+  // PostMessage fallback for when API is already cached
+  function _nudge(){
+    try{document.getElementById('heroVideo').contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}','*')}catch(e){}
+    if(window.YT&&window.YT.Player){_startHero();}
+  }
+  setTimeout(_nudge,800);
+  setTimeout(_nudge,2000);
+  document.addEventListener('mousemove',_nudge,{once:true,passive:true});
+  document.addEventListener('click',_nudge,{once:true,passive:true});
+  document.addEventListener('touchstart',_nudge,{once:true,passive:true});
 
   // Hover preview — uses data-vid attribute, class pcard
   document.querySelectorAll('.pcard[data-vid]').forEach(function(card){
